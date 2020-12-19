@@ -4,6 +4,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class OlympicWinners {
@@ -35,9 +36,16 @@ public class OlympicWinners {
             } catch (NumberFormatException e) { continue; }
         }
 
+        String csvFileContents = "Nazwisko,Kraj,Złote Medale,Srebrne Medale,Brązowe Medale\n";
         for(Olympian o : olympians) {
-            System.out.println(o);
+            csvFileContents += o.getDataAsCsvRow();
         }
+
+        try {
+            FileWriter myWriter = new FileWriter("olimpiczycy.csv");
+            myWriter.write(csvFileContents);
+            myWriter.close();
+        } catch (IOException e) {  e.printStackTrace(); }
     }
 
 }

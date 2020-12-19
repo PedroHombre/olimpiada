@@ -23,4 +23,8 @@ public class Olympian {
                 ", bronzeMedals=" + bronzeMedals +
                 '}';
     }
+
+    public String getDataAsCsvRow() {
+        return name + "," + country + "," + goldenMedals + "," + silverMedals + "," + bronzeMedals  + "\n";
+    }
 }
