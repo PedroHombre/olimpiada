@@ -20,9 +20,7 @@ public class OlympicWinners {
             return;
         }
 
-
         Elements rows = doc.getElementsByClass("datagrid_header_table").first().getElementsByTag("tr");
-
 
         for (Element r : rows) {
             Elements data = r.getElementsByTag("td");
@@ -46,6 +44,8 @@ public class OlympicWinners {
             myWriter.write(csvFileContents);
             myWriter.close();
         } catch (IOException e) {  e.printStackTrace(); }
+        DatabaseController.initialize();
+        DatabaseController.clearEventDataFromDatabase();
+        DatabaseController.saveToDatabase(olympians);
     }
-
 }
